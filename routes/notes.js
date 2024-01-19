@@ -27,4 +27,16 @@ notes.post('/', (req, res) => {
     }
 })
 
+notes.delete('/', (req, res) => {
+    console.log(`A ${req.method} request has been made`)
+
+    const { title, text} = req.body;
+
+    if (req.body) {
+
+    } else {
+        res.error('Error removing Note');
+    }
+})
+
 module.exports = notes;
