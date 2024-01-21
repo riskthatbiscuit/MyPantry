@@ -1,7 +1,7 @@
-const pantryForm = document.getElementById('pantry-form');
-const pantryContainer = document.getElementById("pantry-container");
+const mealForm = document.getElementById('meal-form');
+const mealContainer = document.getElementById('meal-container');
 
-const createCard = (pantry) => {
+const createCard = (meal) => {
     const cardEl = document.createElement('div');
     cardEl.classList.add('card', 'mb-3');
 
@@ -13,20 +13,16 @@ const createCard = (pantry) => {
         'p-2',
         'm-0'
     );
-    cardHeaderEl.innerHTML = `${pantry.title} </br>`;
+    cardHeaderEl.innerHTML = `${meal.title} </br>`;
 
     const cardBodyEl = document.createElement('div');
     cardBodyEl.classList.add('card-body', 'bg-light', 'p-2');
-    cardBodyEl.innerHTML = `<p>${pantry.text}</p>`;
-
     cardEl.appendChild(cardHeaderEl);
-    cardEl.appendChild(cardBodyEl);
-
-    pantryContainer.appendChild(cardEl);
+    mealContainer.appendChild(cardEl);
 };
 
-const getPantry = () =>
-    fetch("api/pantry", {
+const getMeal = () =>
+    fetch("api/meal", {
         method: "GET",
         headers: {
         "Content-Type": "application/json",
@@ -39,38 +35,36 @@ const getPantry = () =>
     });
 
     
-const postPantry = (pantry) =>
-    fetch('api/pantry', {
+const postMeal = (meal) =>
+    fetch('api/meal', {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
-        body: JSON.stringify(pantry),
+        body: JSON.stringify(meal),
     })
     .then((res) => res.json())
     .then((data) => {
         alert(data);
-        createCard(pantry);
+        createCard(meal);
     })
     .catch((error) => {
         console.error('Error:', error);
     })
     
-getPantry().then((data) => data.forEach((pantry) => createCard(pantry)));
+getMeal().then((data) => data.forEach((meal) => createCard(meal)));
 
-const handlePantrySubmit = (e) => {
-    e.preventDefault();
+const handleMealSubmit = (e) => {
     console.log('Form submit invoked');
+    e.preventDefault();
 
-    const pantryItem = document.getElementById('pantryItem').value.trim();
-    const pantryText = document.getElementById('pantryText').value.trim();
+    const title = document.getElementById('mealName').value.trim();
 
-    const newPantryItem = {
-      pantryItem,
-      pantryText,
+    const newMealItem = {
+        title,
     };
-    console.log(newPantryItem)
-    postPantry(newPantryItem);
+    console.log(newMealItem)
+    postMeal(newMealItem);
 }
 
-pantryForm.addEventListener('submit',handlePantrySubmit);
+mealForm.addEventListener('submit',handleMealSubmit);
