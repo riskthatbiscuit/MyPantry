@@ -16,8 +16,8 @@ app.get('/', (req, res) =>
     res.sendFile(path.join(__dirname, '/public/index.html'))
 )
 
-app.get('/notes', (req, res) =>
-    res.sendFile(path.join(__dirname, 'public/pages/notes.html'))
+app.get('/pantry', (req, res) =>
+    res.sendFile(path.join(__dirname, 'public/pages/pantry.html'))
 );
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`))

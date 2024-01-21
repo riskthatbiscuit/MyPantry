@@ -1,33 +1,33 @@
 const express = require('express');
-const notes = express.Router();
+const pantry = express.Router();
 const {readFromFile, readAndAppend} = require('../helpers/fsutils.js');
 
 
-notes.get('/', (req, res) => {
+pantry.get('/', (req, res) => {
     console.log(`A ${req.method} request was made`);
-    readFromFile('./db/notes.json').then((data => res.json(JSON.parse(data))));
+    readFromFile('./db/pantry.json').then((data => res.json(JSON.parse(data))));
 })
 
-notes.post('/', (req, res) => {
+pantry.post('/', (req, res) => {
     console.log(`A ${req.method} request was made`);
     console.log(req.body);
 
     const { title, text } = req.body;
 
     if (req.body) {
-        const newNote = {
+        const newPantry = {
             title,
             text
         };
 
-        readAndAppend(newNote, './db/notes.json');
-        res.json('Note added successfully')
+        readAndAppend(newPantry, './db/pantry.json');
+        res.json('Pantry added successfully')
     } else {
-        res.error('Error adding Note')
+        res.error('Error adding Pantry')
     }
 })
 
-notes.delete('/', (req, res) => {
+pantry.delete('/', (req, res) => {
     console.log(`A ${req.method} request has been made`)
 
     const { title, text} = req.body;
@@ -35,8 +35,8 @@ notes.delete('/', (req, res) => {
     if (req.body) {
 
     } else {
-        res.error('Error removing Note');
+        res.error('Error removing Pantry');
     }
 })
 
-module.exports = notes;
+module.exports = pantry;

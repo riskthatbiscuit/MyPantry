@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes Recorder</title>
+    <title>MyPantry</title>
     <link rel="stylesheet" href="./styles/index.css"/>
 </head>
 
@@ -11,28 +11,26 @@
     <section class="top">
         <header class="bg-primary text-light mb-4 py-3 flex-row align-center">
             <div class="container flex-row justify-space-between-lg justify-center align-center">
-                <h1 class="m-0">Notes recorder</h1>
-                <p class="m-0">Add notes for people to read</p>
-                <a href="/notes" class="m-0">Notes</a>
+                <h1 class="m-0">MyPantry</h1>
+                <p class="m-0">Pantry Planner</p>
+                <a href="/pantry" class="m-0">Pantry</a>
             </div>
         </header>
     </section>
-    <section class="note-form">
-        <form class="flex-row justify-center justify-space-between-md align-center" id="note-form">
+    <section class="pantry-form">
+        <form class="flex-row justify-center justify-space-between-md align-center" id="pantry-form">
             <div class="col-12">
-                <input name="noteTitle" id="noteTitle" placeholder="Note title" value="" class="form-input w-100"/>
+                <input name="pantryItem" id="pantryItem" placeholder="Pantry item" value="" class="form-input w-100"/>
             </div>
             <div class="col-12 col-lg-9">
-                <textarea name="noteText" id="noteText" placeholder="Add note" class="form-input w-100"></textarea>
+                <textarea name="pantryText" id="pantryText" placeholder="Add pantry" class="form-input w-100"></textarea>
             </div>
             <div class="col-12 col-lg-3">
-                <button class="btn btn-primary btn-block py-3" type="submit">Add Note</button>
+                <button class="btn btn-primary btn-block py-3" type="submit">Add Pantry Item</button>
             </div>
         </form>
     </section>
-    <section class="note-container">
-
-    </section>
+    <section class="pantry" id="pantry-container"></section>
     <script src="./scripts/index.js"></script>
 </body>
 
