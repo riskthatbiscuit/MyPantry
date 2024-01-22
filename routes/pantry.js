@@ -1,6 +1,7 @@
 const express = require('express');
 const pantry = express.Router();
-const {readFromFile, readAndAppend} = require('../helpers/fsutils.js');
+const {readFromFile, writeToFile, readAndAppend} = require("../helpers/fsutils.js");
+const uuid = require('../helpers/uuid.js');
 
 
 pantry.get('/', (req, res) => {
@@ -17,7 +18,8 @@ pantry.post('/', (req, res) => {
     if (req.body) {
         const newPantry = {
             title,
-            text
+            text,
+            id: uuid(),
         };
 
         readAndAppend(newPantry, './db/pantry.json');
@@ -27,13 +29,26 @@ pantry.post('/', (req, res) => {
     }
 })
 
-pantry.delete('/', (req, res) => {
+pantry.delete('/:id', (req, res) => {
     console.log(`A ${req.method} request has been made`)
 
-    const { title, text} = req.body;
-
-    if (req.body) {
-
+    const pantryId = req.params.id;
+    console.log(pantryId)
+    if (pantryId) {
+        readFromFile('./db/pantry.json')
+            .then((data) => {
+                const pantryArray = JSON.parse(data);
+                console.log(pantryArray)
+                const pantryIndex = pantryArray.findIndex((pantry) => pantry.id === pantryId);
+                console.log(pantryIndex)
+                if (pantryIndex !== -1) {
+                    pantryArray.splice(pantryIndex,1);
+                    writeToFile("./db/pantry.json",pantryArray)
+                    res.status(200).json("Pantry item removed succesfully")
+                } else {
+                    res.status(400).json("Pantry item not found");
+                }
+            })
     } else {
         res.error('Error removing Pantry');
     }

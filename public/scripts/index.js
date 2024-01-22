@@ -3,7 +3,7 @@ const mealContainer = document.getElementById('meal-container');
 
 const createCard = (meal) => {
     const cardEl = document.createElement('div');
-    cardEl.classList.add('card', 'mb-3');
+    cardEl.classList.add("card", "mb-3", "col-4");
 
     const cardHeaderEl = document.createElement('h4');
     cardHeaderEl.classList.add(
@@ -11,13 +11,13 @@ const createCard = (meal) => {
         'bg-primary',
         'text-light',
         'p-2',
-        'm-0'
+        'm-0' 
     );
     cardHeaderEl.innerHTML = `${meal.title} </br>`;
 
     const cardBodyEl = document.createElement('div');
     cardBodyEl.classList.add('card-body', 'bg-light', 'p-2');
-    cardBodyEl.innerHTML = `Description`
+    cardBodyEl.innerHTML = `Description, ingredients etc.`
     
 
     cardEl.appendChild(cardHeaderEl);

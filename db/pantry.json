@@ -1,38 +1,32 @@
 [
     {
         "title": "Soy Sauce",
-        "text": "Brand A"
+        "text": "Brand A",
+        "id": "a6"
     },
     {
         "title": "Milk",
-        "text": "Full Fat"
+        "text": "Full Fat",
+        "id": "n12"
     },
     {
         "title": "Nutmeg",
-        "text": "Spice"
-    },
-    {
-        "title": "Soy Sauce",
-        "text": "Brand A"
-    },
-    {
-        "title": "Apples",
-        "text": "Granny Smith"
-    },
-    {
-        "title": "asdf",
-        "text": "asdfsadgasdg"
+        "text": "Spice",
+        "id": "n572"
     },
     {
         "title": "Chips",
-        "text": "Doritos"
-    },
-    {
-        "title": "Chips",
-        "text": "Doritos - Hot"
+        "text": "Doritos - Hot",
+        "id": "476"
     },
     {
         "title": "Salsa",
-        "text": "Mild"
+        "text": "Mild",
+        "id": "2f4"
+    },
+    {
+        "title": "Cheese",
+        "text": "Gouda",
+        "id": "693"
     }
 ]

@@ -4,7 +4,7 @@ const pantryContainer = document.getElementById('pantry-container');
 const createCard = (pantryItem) => {
     console.log(pantryItem)
     const cardEl = document.createElement('div');
-    cardEl.classList.add('card', 'mb-3');
+    cardEl.classList.add('card', 'mb-3','col-3');
 
     const cardHeaderEl = document.createElement('h4');
     cardHeaderEl.classList.add('card-header','bg-primary','text-light','p-2','m-0');
@@ -45,6 +45,13 @@ const postPantry = (pantry) =>
     })
     .catch((error) => console.error("Error:", error)
     )
+
+const removePantry = (pantry) =>fetch('api/pantry', {
+        method: "DEL",
+        headers: {
+            "Content-Type": "application/json",
+        },
+})
 
 getPantry().then((data) => data.forEach((pantryItem) => createCard(pantryItem)))
 
