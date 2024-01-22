@@ -11,7 +11,6 @@ pantry.get('/', (req, res) => {
 
 pantry.post('/', (req, res) => {
     console.log(`A ${req.method} request was made`);
-    console.log(req.body);
 
     const { title, text } = req.body;
 
@@ -22,6 +21,7 @@ pantry.post('/', (req, res) => {
             id: uuid(),
         };
 
+        console.log(newPantry)
         readAndAppend(newPantry, './db/pantry.json');
         res.json('Pantry added successfully')
     } else {
@@ -31,7 +31,7 @@ pantry.post('/', (req, res) => {
 
 pantry.delete('/:id', (req, res) => {
     console.log(`A ${req.method} request has been made`)
-
+    console.log(req.params)
     const pantryId = req.params.id;
     console.log(pantryId)
     if (pantryId) {

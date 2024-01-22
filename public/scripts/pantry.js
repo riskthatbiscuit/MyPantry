@@ -11,8 +11,15 @@ const createCard = (pantryItem) => {
     cardHeaderEl.innerHTML = `${pantryItem.title}`
 
     const cardBodyEl = document.createElement("div");
-    cardBodyEl.classList.add("card-body", "bg-light", "p-2");
+    cardBodyEl.classList.add("card-body", "bg-light", "p-2", "flex-row", "justify-space-between");
     cardBodyEl.innerHTML = `${pantryItem.text}`
+
+    const delBtn = document.createElement('button');
+    delBtn.classList.add("btn", "btn-danger", "p-2");
+    delBtn.textContent = "Delete"
+    delBtn.setAttribute('id',`${pantryItem.id}`)
+    delBtn.addEventListener('click', handlePantryDelete)
+    cardBodyEl.appendChild(delBtn)
 
     cardEl.appendChild(cardHeaderEl);
     cardEl.appendChild(cardBodyEl);
@@ -46,8 +53,8 @@ const postPantry = (pantry) =>
     .catch((error) => console.error("Error:", error)
     )
 
-const removePantry = (pantry) =>fetch('api/pantry', {
-        method: "DEL",
+const removePantry = (id) =>fetch(`api/pantry/${id}`, {
+        method: "DELETE",
         headers: {
             "Content-Type": "application/json",
         },
@@ -70,6 +77,18 @@ const handlePantrySubmit = (e) => {
     console.log(newPantryItem);
     postPantry(newPantryItem);
 }
+
+const handlePantryDelete = (e) => {
+    e.preventDefault();
+
+    const pantryId = e.target.getAttribute('id');
+    removePantry(pantryId).then(() => {
+        const cardEl = e.target.closest('.card');
+        if (cardEl) {
+            cardEl.remove();
+        }
+    }).catch((error) => console.error("Error:", error));
+};
 
 pantryForm.addEventListener('submit', handlePantrySubmit);
 
