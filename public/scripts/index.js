@@ -17,7 +17,11 @@ const createCard = (meal) => {
 
     const cardBodyEl = document.createElement('div');
     cardBodyEl.classList.add('card-body', 'bg-light', 'p-2');
+    cardBodyEl.innerHTML = `Description`
+    
+
     cardEl.appendChild(cardHeaderEl);
+    cardEl.appendChild(cardBodyEl);
     mealContainer.appendChild(cardEl);
 };
 
