@@ -23,7 +23,7 @@ pantry.post('/', (req, res) => {
 
         console.log(newPantry)
         readAndAppend(newPantry, './db/pantry.json');
-        res.json('Pantry added successfully')
+        res.json(newPantry)
     } else {
         res.error('Error adding Pantry')
     }

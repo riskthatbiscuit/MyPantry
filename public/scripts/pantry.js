@@ -48,7 +48,7 @@ const postPantry = (pantry) =>
     .then((res) => res.json())
     .then((data) => {
         // alert(data);
-        createCard(pantry);
+        createCard(data);
     })
     .catch((error) => console.error("Error:", error)
     )
@@ -82,6 +82,7 @@ const handlePantryDelete = (e) => {
     e.preventDefault();
 
     const pantryId = e.target.getAttribute('id');
+    console.log("Pantry Id is ",pantryId)
     removePantry(pantryId).then(() => {
         const cardEl = e.target.closest('.card');
         if (cardEl) {
